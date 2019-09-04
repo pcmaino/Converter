@@ -51,17 +51,21 @@
             android:text = "Digital Root Tool:"
             />
         <EditText
+            android:id="@+id/drEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Enter space seperated numbers" />
+            android:inputType="phone"
+            android:hint="Enter space seperated numbers"
+            />
         <Button
+            android:id="@+id/drButton"
             android:layout_width="100dp"
             android:layout_height="64dp"
             android:text="Enter"
             />
 
         <TextView
+            android:id="@+id/drOutput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

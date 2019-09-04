@@ -11,6 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +35,29 @@ public class MainActivity extends AppCompatActivity {
 //                //        .setAction("Action", null).show();
 //            }
 //        });
+
+        final TextView drOutput = findViewById(R.id.drOutput);
+        final EditText drEdit = findViewById(R.id.drEdit);
+        //look into "OnEditorAction" for the "Enter" part of the input
+
+        Button drButton = findViewById(R.id.drButton);
+        drButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String raw = drEdit.getText().toString();
+                    raw.trim();
+
+                    if(onlyNumsSpaces(raw)) {
+                        drOutput.setText("ERROR\nPlease only enter numbers and spaces.");
+                    }
+
+
+
+
+
+                }
+            }
+        );
     }
 
     @Override
@@ -51,5 +80,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    boolean onlyNumsSpaces(String s) {
+        if(s.isEmpty()) return true;
+
+        Pattern p = Pattern.compile("[^0123456789 ]");
+        Matcher m = p.matcher(s);
+
+        return m.matches();
+
     }
 }
