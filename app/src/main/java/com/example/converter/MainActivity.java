@@ -44,11 +44,19 @@ public class MainActivity extends AppCompatActivity {
         drButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     String raw = drEdit.getText().toString();
                     raw.trim();
 
-                    if(onlyNumsSpaces(raw)) {
+
+
+                    if(onlyNumsSpaces(raw) == false) {
+                        System.out.println("please run");
                         drOutput.setText("ERROR\nPlease only enter numbers and spaces.");
+                    }
+                    else {
+
+                        drOutput.setText("THE DIGITAL ROOT IS: \n" + raw);
                     }
 
 
@@ -83,12 +91,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     boolean onlyNumsSpaces(String s) {
-        if(s.isEmpty()) return true;
+        System.out.println("String is: "+s);
+        if(s.isEmpty()) {
+            System.out.println("Returning at isEmpty()");
+            return true;
+        }
 
-        Pattern p = Pattern.compile("[^0123456789 ]");
-        Matcher m = p.matcher(s);
+        //Pattern p = Pattern.compile("[^0123456789 ]");
+        //Matcher m = p.matcher(s);
 
-        return m.matches();
+        System.out.println("S.matches returns " + s.matches("^[0123456789 ]+$"));
+
+        return s.matches("^[0123456789 ]+$");
 
     }
 }
