@@ -41,32 +41,82 @@ public class MainActivity extends AppCompatActivity {
         //look into "OnEditorAction" for the "Enter" part of the input
 
         Button drButton = findViewById(R.id.drButton);
+        //Click event for the button
         drButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    //gets the text from the input
                     String raw = drEdit.getText().toString();
-                    raw.trim();
+                    raw = raw.trim();
 
 
-
+                    //checks to see if text is well formatted
                     if(onlyNumsSpaces(raw) == false) {
-                        System.out.println("please run");
                         drOutput.setText("ERROR\nPlease only enter numbers and spaces.");
                     }
                     else {
+                        //second check
+                        try {
+                            //if its well formatted, compute the digital root
+                            int sum = 0;
+                            int digitalRoot = 0;
 
-                        drOutput.setText("THE DIGITAL ROOT IS: \n" + raw);
+                            String[] parts = raw.split(" ");
+                            for(String s:parts) {
+                                int num = Integer.parseInt(s);
+                                sum += num;
+                            }
+
+                            while(sum > 0) {
+                                digitalRoot += sum%10;
+                                sum /= 10;
+                            }
+
+                            //finished
+                            drOutput.setText("THE DIGITAL ROOT IS: \n" + digitalRoot);
+
+
+                        }
+                        catch (Exception e) {
+                            drOutput.setText("ERROR\nPlease enter numbers numbers separated by one space.");
+                        }
                     }
-
-
-
-
-
                 }
             }
         );
+
+        final TextView BTSOutput = findViewById(R.id.BTSOutput);
+        final EditText BTSEdit = findViewById(R.id.BTSEdit);
+        //look into "OnEditorAction" for the "Enter" part of the input
+
+        Button BTSButton = findViewById(R.id.BTSButton);
+        //Click event for the button
+        BTSButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String raw = BTSEdit.getText().toString();
+                String i = "";
+                raw=raw.trim();
+
+                try {
+                    i = Long.valueOf(raw,36).toString();
+                    BTSOutput.setText("Base 36: " + raw + " -> Base 10: " + i);
+                }
+                catch (Exception e) {
+                    System.out.print("Error was: "+ e);
+                    BTSOutput.setText("ERROR\nPlease enter a number in base 36.");
+                }
+
+
+
+            }
+        }
+        );
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
