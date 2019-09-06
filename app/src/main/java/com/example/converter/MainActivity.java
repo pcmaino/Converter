@@ -1,5 +1,7 @@
 package com.example.converter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     //checks to see if text is well formatted
                     if(onlyNumsSpaces(raw) == false) {
                         drOutput.setText("ERROR\nPlease only enter numbers and spaces.");
+                        Snackbar.make(view, "ERROR", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                     else {
                         //second check
@@ -72,6 +76,16 @@ public class MainActivity extends AppCompatActivity {
                                 sum /= 10;
                             }
 
+                            while(digitalRoot > 10) {
+                                sum = digitalRoot;
+                                digitalRoot = 0;
+
+                                while(sum > 0) {
+                                    digitalRoot += sum%10;
+                                    sum /= 10;
+                                }
+                            }
+
                             //finished
                             drOutput.setText("THE DIGITAL ROOT IS: \n" + digitalRoot);
 
@@ -79,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         catch (Exception e) {
                             drOutput.setText("ERROR\nPlease enter numbers numbers separated by one space.");
+                            Snackbar.make(view, "ERROR", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                         }
                     }
                 }
@@ -106,12 +122,45 @@ public class MainActivity extends AppCompatActivity {
                 catch (Exception e) {
                     System.out.print("Error was: "+ e);
                     BTSOutput.setText("ERROR\nPlease enter a number in base 36.");
+                    Snackbar.make(view, "ERROR", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
 
 
 
             }
         }
+        );
+
+        final TextView BTEOutput = findViewById(R.id.BTEOutput);
+        final EditText BTEEdit = findViewById(R.id.BTEEdit);
+        //look into "OnEditorAction" for the "Enter" part of the input
+
+        Button BTEButton = findViewById(R.id.BTEButton);
+        //Click event for the button
+        BTEButton.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+
+                                             String raw = BTEEdit.getText().toString();
+                                             int i = 0;
+                                             raw=raw.trim();
+
+                                             try {
+                                                 i = Integer.valueOf(raw,10);
+                                                 BTEOutput.setText("Base 10: " + raw + " -> Base 36: " + Integer.toString(i, 36));
+                                             }
+                                             catch (Exception e) {
+                                                 System.out.print("Error was: "+ e);
+                                                 BTEOutput.setText("ERROR\nPlease enter a number in base 10.");
+                                                 Snackbar.make(view, "ERROR", Snackbar.LENGTH_LONG)
+                                                         .setAction("Action", null).show();
+                                             }
+
+
+
+                                         }
+                                     }
         );
     }
 
@@ -134,7 +183,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=zero+escape+999&oq=zero+escape+999&aqs=chrome..69i57j69i59j0l4.6779j0j7&sourceid=chrome&ie=UTF-8"));
+            startActivity(browserIntent);
         }
 
         return super.onOptionsItemSelected(item);
