@@ -66,8 +66,8 @@
             />
         <Button
             android:id="@+id/drButton"
-            android:layout_width="100dp"
-            android:layout_height="64dp"
+            android:layout_width="100sp"
+            android:layout_height="64sp"
             android:text="Enter"
             />
 
@@ -78,7 +78,7 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:paddingTop="20dp"
-            android:paddingBottom="50dp"
+            android:paddingBottom="30dp"
             android:text="THE DIGITAL ROOT IS: \nPlease enter numbers above."
             android:textStyle="bold"
             />
@@ -102,8 +102,8 @@
             />
         <Button
             android:id="@+id/BTSButton"
-            android:layout_width="100dp"
-            android:layout_height="64dp"
+            android:layout_width="100sp"
+            android:layout_height="64sp"
             android:text="Enter"
             />
 
@@ -114,8 +114,44 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:paddingTop="20dp"
-            android:paddingBottom="50dp"
+            android:paddingBottom="30dp"
             android:text="Please enter a number in base 36 above."
+            android:textStyle="bold"
+            />
+
+        <TextView
+
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Base 10 to Base 36 Tool:"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:id="@+id/BTEEdit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Enter here"
+            />
+        <Button
+            android:id="@+id/BTEButton"
+            android:layout_width="100sp"
+            android:layout_height="64sp"
+            android:text="Enter"
+            />
+
+        <TextView
+            android:id="@+id/BTEOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:text="Please enter a number in base 10 above."
             android:textStyle="bold"
             />
 

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String raw = BTSEdit.getText().toString();
                 String i = "";
-                raw=raw.trim();
+                raw=raw.trim().toLowerCase();
 
                 try {
                     i = Long.valueOf(raw,36).toString();
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
                                              String raw = BTEEdit.getText().toString();
                                              int i = 0;
-                                             raw=raw.trim();
+                                             raw=raw.trim().toLowerCase();
 
                                              try {
                                                  i = Integer.valueOf(raw,10);
